@@ -9,9 +9,9 @@ class FilterOptions extends React.Component {
           id="printType" 
           name="printType" 
           onChange={e => this.props.updatePrintType(e.target.value)}>
-          <option value="">All</option>
-          <option value="BOOK">Books</option>
-          <option value="MAGAZINE">Magazines</option>
+          <option value="all">All</option>
+          <option value="books">Books</option>
+          <option value="magazines">Magazines</option>
         </select>
         <label htmlFor="bookType">Book Type: </label>
         <select 

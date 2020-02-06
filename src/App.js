@@ -11,7 +11,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       searchString: "",
-      printType: "",
+      printType: "all",
       bookType: "",
       results: this.props.exampleResults,
       myKey: "AIzaSyA3GASGmSP9jX27cbCXVitOWgF9em1BU1g",
@@ -40,7 +40,12 @@ class App extends React.Component {
 
   handleBookSearch = (e) => {
     e.preventDefault();
-    const url = `https://www.googleapis.com/books/v1/volumes?q=${this.state.searchString}&key=${this.state.myKey}`;
+    let url = `https://www.googleapis.com/books/v1/volumes?q=${this.state.searchString}&key=${this.state.myKey}`;
+    if(this.state.bookType === "free-ebooks") {
+      url = url.concat('&filter=free-ebooks');
+    } else if(this.state.printType !== "all") {
+      url = url.concat('&printType=', this.state.printType);
+    }
     fetch(url)
       .then(res => {
         if(!res.ok) {

@@ -4,8 +4,10 @@ import Book from '../Book/Book';
 function ResultsList(props) {
   const booklist = props.results.map(book => {
     let pricing;
-    if(book.saleInfo.saleability === "NOT_FOR_SALE" || book.saleInfo.retailPrice.amount === undefined) {
+    if(book.saleInfo.saleability === "NOT_FOR_SALE") {
       pricing = "Not for sale"
+    } else if(book.saleInfo.saleability === "FREE") {
+      pricing = "Free"
     } else {
       pricing = new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'}).format(book.saleInfo.retailPrice.amount);
     }
@@ -21,7 +23,7 @@ function ResultsList(props) {
       <Book 
         key={book.id}
         title={book.volumeInfo.title}
-        author={book.volumeInfo.authors.join(", ")}
+        author={book.volumeInfo.authors}
         description={book.volumeInfo.description}
         coverImg={coverImage}
         price={pricing}
