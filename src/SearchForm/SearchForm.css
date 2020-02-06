@@ -1,0 +1,25 @@
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(171,171,171);
+  height: 45px;
+}
+
+.searchLabel {
+  font-size: 1.3em;
+  padding-right: 10px;
+}
+
+.searchInput {
+  background-color: rgb(250,255,189);
+  font-size: 1em;
+  padding-left: 3px; 
+}
+
+.searchButton {
+  border-radius: 8px; 
+  font-size: 1em;
+  padding: 0 10px;
+  margin: 3px;
+}

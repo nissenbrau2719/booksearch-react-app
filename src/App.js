@@ -13,7 +13,7 @@ class App extends React.Component {
       searchString: "",
       printType: "all",
       bookType: "",
-      results: this.props.exampleResults,
+      results: [],
       myKey: "AIzaSyA3GASGmSP9jX27cbCXVitOWgF9em1BU1g",
       error: null
     }
@@ -60,7 +60,16 @@ class App extends React.Component {
       })
   }
 
+  
+
   render() {
+  const resultsList = !this.state.error 
+      ? <ResultsList results={this.state.results} bookTypeFilter={this.state.bookType} printTypeFilter={this.state.printType} />
+      : <div className="errorMessage">
+          <h2>{this.state.error}</h2>
+          <p>Please try again later</p>  
+        </div>;
+
     return (
       <main className='App'>
         <header>
@@ -72,10 +81,7 @@ class App extends React.Component {
         <FilterOptions
           updateBookType={this.updateBookType}
           updatePrintType={this.updatePrintType} />
-        <ResultsList 
-          results={this.state.results}
-          bookTypeFilter={this.state.bookType}
-          printTypeFilter={this.state.printType} />
+        {resultsList}
       </main>
     );
   }

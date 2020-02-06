@@ -19,11 +19,17 @@ function ResultsList(props) {
       coverImage = book.volumeInfo.imageLinks.thumbnail;
     }
     
+    let author;
+    if(book.volumeInfo.authors === undefined) {
+      author = "Not Listed";
+    } else {
+      author = book.volumeInfo.authors.join(", ");
+    }
     return (
       <Book 
         key={book.id}
         title={book.volumeInfo.title}
-        author={book.volumeInfo.authors}
+        author={author}
         description={book.volumeInfo.description}
         coverImg={coverImage}
         price={pricing}

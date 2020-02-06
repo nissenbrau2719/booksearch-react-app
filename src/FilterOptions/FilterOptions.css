@@ -1,0 +1,17 @@
+.filterOptions {
+  background-color: rgb(222,222,222);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 45px;
+}
+
+.filterLabel {
+  font-size: 1.3em;
+  padding: 5px;
+}
+
+.filterSelect {
+  font-size: 1em;
+  margin-right: 10px;
+}

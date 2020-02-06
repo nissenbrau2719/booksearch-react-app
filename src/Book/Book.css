@@ -2,3 +2,38 @@ a {
   text-decoration: none;
   color: black;
 }
+
+.book {
+  margin: 0 10px;
+  border-top: solid 1px rgb(204,204,204);
+}
+
+.title {
+  font-size: 2em;
+  text-align: center;
+}
+
+.content {
+  display: flex;
+}
+
+.bookInfo p {
+  text-align: center;
+  font-size: 1.25em;
+  margin: 0;
+}
+
+.cover img {
+  width: 200px;
+
+}
+
+.bookInfo {
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 10px;
+}
+
+.description {
+  padding: 15px 0;
+}
