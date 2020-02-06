@@ -3,7 +3,7 @@ import React from 'react';
 class SearchForm extends React.Component {
   render() {
     return (
-      <form>
+      <form onSubmit={this.props.handleSubmit}>
         <label htmlFor="searchString">Search: </label>
         <input 
           type="text" 

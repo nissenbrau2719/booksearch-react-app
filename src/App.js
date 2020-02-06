@@ -27,14 +27,15 @@ class App extends React.Component {
   }
 
 
-  handleBookSearch = () => {
+  handleBookSearch = (e) => {
+    e.preventDefault();
     const url = `https://www.googleapis.com/books/v1/volumes?q=${this.state.searchString}&key=${this.state.myKey}`;
     fetch(url)
       .then(res => {
         if(!res.ok) {
           throw new Error('Something went wrong')
         }
-        return res.json()
+        return res.json();
       })
       .then(data => {
         this.setState({
