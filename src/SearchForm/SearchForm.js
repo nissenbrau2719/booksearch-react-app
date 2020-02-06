@@ -9,8 +9,9 @@ class SearchForm extends React.Component {
           type="text" 
           name="searchString" 
           id="searchString"
+          onChange={e => this.props.updateSearchString(e.target.value)}
         />
-
+        <button type="submit">Search</button>
       </form>
     )
   }

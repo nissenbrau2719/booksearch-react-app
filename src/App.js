@@ -19,6 +19,14 @@ class App extends React.Component {
     }
   }
 
+  updateSearchString = (newSearchString) => {
+    let formattedString = newSearchString.split(' ').join('+');
+    this.setState({
+      searchString: formattedString
+    });
+  }
+
+
   handleBookSearch = () => {
     const url = `https://www.googleapis.com/books/v1/volumes?q=${this.state.searchString}&key=${this.state.myKey}`;
     fetch(url)
@@ -33,7 +41,6 @@ class App extends React.Component {
           results: data.items
         })
       })
-
   }
 
   render() {
@@ -44,7 +51,7 @@ class App extends React.Component {
         </header>
         <SearchForm 
           handleSubmit={this.handleBookSearch}
-          handleChangeSearchString={this.handleChangeSearch} />
+          updateSearchString={this.updateSearchString} />
         <FilterOptions />
         <ResultsList results={this.state.results} />
       </main>
