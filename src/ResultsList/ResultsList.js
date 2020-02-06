@@ -3,10 +3,13 @@ import Book from '../Book/Book';
 
 function ResultsList(props) {
   const booklist = props.results.map(book => {
-    const pricing = book.saleInfo.saleability === "NOT_FOR_SALE" 
-      ? "Not for sale"
-      : new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'}).format(book.saleInfo.retailPrice.amount);
-    
+    let pricing;
+    if(book.saleInfo.saleability === "NOT_FOR_SALE" || book.saleInfo.retailPrice.amount === undefined) {
+      pricing = "Not for sale"
+    } else {
+      pricing = new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'}).format(book.saleInfo.retailPrice.amount);
+    }
+
     let coverImage;
     if(book.volumeInfo.imageLinks.thumbnail === undefined) {
       coverImage = 'https://media.thefinder.com.sg/2018/03/image-not-found-1024x682.jpg';
@@ -18,10 +21,11 @@ function ResultsList(props) {
       <Book 
         key={book.id}
         title={book.volumeInfo.title}
-        author={book.volumeInfo.authors}
+        author={book.volumeInfo.authors.join(", ")}
         description={book.volumeInfo.description}
         coverImg={coverImage}
         price={pricing}
+        infoLink={book.volumeInfo.infoLink}
       />
     );  
   });

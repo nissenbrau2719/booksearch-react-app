@@ -26,6 +26,17 @@ class App extends React.Component {
     });
   }
 
+  updatePrintType = (filter) => {
+    this.setState({
+      printType: filter
+    });
+  }
+
+  updateBookType = (filter) => {
+    this.setState({
+      bookType: filter
+    });
+  }
 
   handleBookSearch = (e) => {
     e.preventDefault();
@@ -53,8 +64,13 @@ class App extends React.Component {
         <SearchForm 
           handleSubmit={this.handleBookSearch}
           updateSearchString={this.updateSearchString} />
-        <FilterOptions />
-        <ResultsList results={this.state.results} />
+        <FilterOptions
+          updateBookType={this.updateBookType}
+          updatePrintType={this.updatePrintType} />
+        <ResultsList 
+          results={this.state.results}
+          bookTypeFilter={this.state.bookType}
+          printTypeFilter={this.state.printType} />
       </main>
     );
   }
