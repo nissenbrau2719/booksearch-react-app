@@ -1,26 +1,56 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.css';  
+import SearchForm from './SearchForm/SearchForm';
+import ResultsList from './ResultsList/ResultsList';
+import FilterOptions from './FilterOptions/FilterOptions';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchString: "",
+      printType: "",
+      bookType: "",
+      results: this.props.exampleResults,
+      myKey: "AIzaSyA3GASGmSP9jX27cbCXVitOWgF9em1BU1g",
+      error: null
+    }
+  }
+
+  handleBookSearch = () => {
+    const url = `https://www.googleapis.com/books/v1/volumes?q=${this.state.searchString}&key=${this.state.myKey}`;
+    fetch(url)
+      .then(res => {
+        if(!res.ok) {
+          throw new Error('Something went wrong')
+        }
+        return res.json()
+      })
+      .then(data => {
+        this.setState({
+          results: data.items
+        })
+      })
+
+  }
+
+  render() {
+    return (
+      <main className='App'>
+        <header>
+          <h1>Google Book Search</h1>
+        </header>
+        <SearchForm 
+          handleSubmit={this.handleBookSearch}
+          handleChangeSearchString={this.handleChangeSearch} />
+        <FilterOptions />
+        <ResultsList results={this.state.results} />
+      </main>
+    );
+  }
+  
 }
 
 export default App;
