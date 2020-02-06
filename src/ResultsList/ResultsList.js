@@ -13,7 +13,7 @@ function ResultsList(props) {
     }
 
     let coverImage;
-    if(book.volumeInfo.imageLinks.thumbnail === undefined) {
+    if(book.volumeInfo.imageLinks === undefined) {
       coverImage = 'https://media.thefinder.com.sg/2018/03/image-not-found-1024x682.jpg';
     } else {
       coverImage = book.volumeInfo.imageLinks.thumbnail;
