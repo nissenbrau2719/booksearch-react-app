@@ -14,7 +14,7 @@ class App extends React.Component {
       printType: "all",
       bookType: "",
       results: [],
-      myKey: "AIzaSyA3GASGmSP9jX27cbCXVitOWgF9em1BU1g",
+      myKey: "Add API key here",
       error: null
     }
   }
